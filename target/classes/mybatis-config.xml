@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 
+	자식 태그는 다음 순서로 작성할 것!
+	properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, objectWrapperFactory?, reflectorFactory?, plugins?, 
+	environments?, databaseIdProvider?, mappers?
+ -->
+  <settings>
+  	<setting name="jdbcTypeForNull" value="NULL"/> <!-- null 데이터 전달 시 그대로 null로 대입 -->
+  	<setting name="mapUnderscoreToCamelCase" value="true"/>
+  </settings>
+  
+  <typeAliases>
+  	<package name="com.kh.spring"/> <!-- 해당 패키지 하위에 있는 클래스들을 소문자로 변환하여 별칭등록 -->
+  </typeAliases>
+  
+  <typeHandlers>
+  	<!-- <typeHandler handler="com.kh.spring.common.typehandler.StringArrayTypeHandler" /> -->
+  	<package name="com.kh.spring.common.typehandler"/> 
+  </typeHandlers>
+</configuration>
