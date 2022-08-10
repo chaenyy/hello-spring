@@ -154,7 +154,7 @@ public class DemoController {
 	}
 	
 	@RequestMapping(path = "/updateDev.do", method = RequestMethod.GET)
-	public String devUpdateList(Model model, @RequestParam int no) {
+	public String devUpdate(Model model, @RequestParam int no) {
 		Dev updateInfo = demoService.selectDevByNo(no);
 		log.info("updateInfo = {}", updateInfo);
 		model.addAttribute("updateInfo", updateInfo);
@@ -167,7 +167,7 @@ public class DemoController {
 		int result = demoService.updateDev(dev);
 		redirectAttr.addFlashAttribute("msg", "정보 수정 성공!");
 		
-		return "redirect:/";
+		return "redirect:/demo/devList.do";
 	}
 	
 	@RequestMapping(path = "/deleteDev.do", method = RequestMethod.POST)

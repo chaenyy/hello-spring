@@ -1,3 +1,5 @@
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.List"%>
 <%@page import="com.kh.spring.demo.model.dto.Dev"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -30,7 +32,7 @@ div#demo-container{
 		<div class="form-group row">
 		  <label for="career" class="col-sm-2 col-form-label">개발경력</label>
 		  <div class="col-sm-10">
-		    <input type="number" class="form-control" id="career" name="career" value="${updateInfo.career}" required>년
+		    <input type="number" class="form-control" id="career" name="career" value="${updateInfo.career}" required>
 		  </div>
 		</div>
 		<div class="form-group row">
@@ -55,23 +57,28 @@ div#demo-container{
 				</div>
 			</div>
 		</div>
+		<%
+			String[] langs = ((Dev)request.getAttribute("updateInfo")).getLang();
+			List<String> langList = Arrays.asList(langs);
+			pageContext.setAttribute("langList", langList);
+		%>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">개발언어</label>
 			<div class="col-sm-10">
 				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="checkbox" name="lang" id="Java" value="Java" ${fn:contains(fn:join(updateInfo.lang, ","), 'Java') ? 'checked' : ''} >
+				  <input class="form-check-input" type="checkbox" name="lang" id="Java" value="Java" ${langList.contains('Java') ? 'checked' : ''} >
 				  <label class="form-check-label" for="Java">Java</label>
 				</div>
 				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="checkbox" name="lang" id="C" value="C" ${fn:contains(fn:join(updateInfo.lang, ","), 'C') ? 'checked' : ''}>
+				  <input class="form-check-input" type="checkbox" name="lang" id="C" value="C" ${langList.contains('C') ? 'checked' : ''}>
 				  <label class="form-check-label" for="C">C</label>
 				</div>
 				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="checkbox" name="lang" id="Javascript" value="Javascript" ${fn:contains(fn:join(updateInfo.lang, ","), 'Javascript') ? 'checked' : ''}>
+				  <input class="form-check-input" type="checkbox" name="lang" id="Javascript" value="Javascript" ${langList.contains('Javascript') ? 'checked' : ''}>
 				  <label class="form-check-label" for="Javascript">Javascript</label>
 				</div>
 				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="checkbox" name="lang" id="Python" value="Python" ${fn:contains(fn:join(updateInfo.lang, ","), 'Python') ? 'checked' : ''}>
+				  <input class="form-check-input" type="checkbox" name="lang" id="Python" value="Python" ${langList.contains('Python') ? 'checked' : ''}>
 				  <label class="form-check-label" for="Python">Python</label>
 				</div>
 			</div>
